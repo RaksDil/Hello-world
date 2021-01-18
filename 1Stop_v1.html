@@ -1,0 +1,141 @@
+<html>
+<Style>
+font-family:ariel;
+</style>
+
+<body>
+
+<script type="text/javascript">
+
+let xID=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48];
+let xProduct=['Sunlight Liquid','Sunlight Liquid','Handy Andy','Handy Andy','Pine Fresh','Pine Fresh','Hand cleaner (grit)','Sparkle degreaser','Degreaser','Degreaser','Engine cleaner','Engine cleaner','Car wax','Car wax','Rim cleaner','Car air freshner','Window cleaner','Parrafin','Domestos','Oven Cleaner','Carpet Shampoo','Carpet Shampoo','Thinners','Benzine','Black Dip','Black Dip','Pine Gel(kg)','Pine Gel(kg)','Thick Bleach','Thick Bleach','Floor Polish (High gloss kg)','Floor Stripper(kg)','Floor Quat(Butchery kg)','Tarp Cleaner','Liquid Hand Soap','Sunlight Liquid','Jik','Stasoft','Toilet bowl Pine','Floor Polish (High gloss kg)','Floor Stripper(kg)','Floor Quat(Butchery kg)','Tarp Cleaner','Liquid Hand Soap','Sunlight Liquid','Jik','Stasoft','Toilet bowl Pine'];
+let xQuantity=[5,2,5,2,5,2,5,5,5,25,5,25,5,25,5,5,5,2,5,5,2,5,5,5,2,5,2,5,2,5,2,2,2,2,2,2,2,2,2,5,5,5,5,5,5,5,5,5];
+let xPrice=[35,20,35,20,35,20,120,200,65,270,65,475,65,288,65,65,70,20,65,65,30,70,90,85,120,170,40,100,55,90,170,120,160,69,65,65,65,65,65,120,60,80,290,35,250,250,250,250];
+let xResMsg=" ";
+
+setInterval("selects1()",1000);
+const bName="1_Stop_Chemicals____";
+let bnPos=0;
+
+function showProductList()
+{
+let plist="<input type='button' value='Hide' onclick='javascript:pListSpan.innerHTML=null;'>";
+plist=plist+"<table border><tr><th>ID<th>Product<th>Unit size (litres)<th>Price (R)";
+	for(i = 1; i < xID.length; i++)
+	{	console.log(i);
+		plist=plist+"<tr><td>"+xID[i]+"<td>"+xProduct[i]+"<td>"+xQuantity[i]+"<td>"+xPrice[i];
+	
+	}
+
+plist=plist+"</table>"
+
+pListSpan.innerHTML=plist;
+}
+
+
+
+
+
+function selects1()
+{
+timenow.innerHTML=Date();
+if(bnPos>19){bnPos=0;}
+bnPos=bnPos+1
+anim.innerHTML=bName.substring(0,bnPos);
+P1.value=bnPos;
+}
+
+function getResult()
+{
+
+let sProduct=selectedProduct.value;
+let sUnitSize=unitSize.value;
+let nUnits=numberOfUnits.value;
+
+ xselection.innerHTML=nUnits + " x " + sUnitSize + "l " + sProduct + "<br>To: " + xAddress.value + "<br>" + xPhone.value;
+
+	for(count = 1; count < xID.length; count++)
+	{
+		if((xProduct[count]==sProduct) && (xQuantity[count]==sUnitSize))
+		{
+
+		sPrice=xPrice[count];
+		}
+	}
+
+ uPrice.innerHTML="R" + sPrice + " per unit";
+ tPrice.innerHTML="<U>R" + sPrice*nUnits + " Total</U> "+paymentType.value;
+ xMail.href="mailto:Yesheka.Singh@gmail.com?subject=New Order: " + xselection.innerHTML+" @ "+uPrice.innerHTML;
+ let xResMsg="New Order: " + xselection.innerHTML+" @ "+uPrice.innerHTML;
+WAmsg.href="https://wa.me/27624929369?text="+xResMsg
+}
+
+</script>
+<span id="anim">abc</span>
+<br><progress value='0' max='19' id='P1' /></progress>
+
+<h3><font color='red'>Welcome to 1 Stop Chemicals</font></h3>
+<b>Your number 1 supplier of all your chemical needs</b>
+<br><span id='timenow' style="font-size:small;">.</span>
+<br><span id="pListSpan"></span>
+
+<hr>
+<table>
+<tr><td>Select a product:
+<td><select id="selectedProduct">
+<script>
+let uniqueProductList=['Car air freshner','Car wax','Degreaser','Domestos','Engine cleaner','Hand cleaner (grit)','Handy Andy','Parrafin','Pine Fresh','Rim cleaner','Sparkle degreaser','Sunlight Liquid','Window cleaner','Oven Cleaner','Carpet Shampoo','Thinners','Benzine','Black Dip','Pine Gel(kg)','Thick Bleach','Floor Polish (High gloss kg)','Floor Stripper(kg)','Floor Quat(Butchery kg)','Tarp Cleaner','Liquid Hand Soap','Jik','Stasoft','Toilet bowl Pine'];
+for(i = 1; i < uniqueProductList.length; i++)
+{
+	document.write("<option>");
+	document.write(uniqueProductList[i]);
+	document.write("</option>");
+}
+
+</script>
+</select>
+<input type='button' value='Show Product List' onclick='javascript:showProductList();'>
+
+<tr><td>Select unit size(litres)
+<td><input name="q" type="radio" value="2" onclick="unitSize.value=this.value;" />2
+<input name="q" type="radio" value="5" onclick="unitSize.value=this.value;"  />5
+<input name="q" type="radio" value="25" onclick="unitSize.value=this.value;"  />25
+<input type="text" id="unitSize" style="visibility:hidden;">
+
+<tr><td>Number of units
+<td><input name="u" type="radio" value="1" onclick="numberOfUnits.value=this.value;" />1
+<input name="u" type="radio" value="2" onclick="numberOfUnits.value=this.value;"  />2
+<input name="u" type="radio" value="3" onclick="numberOfUnits.value=this.value;"  />3
+<input name="u" type="radio" value="4" onclick="numberOfUnits.value=this.value;"  />4
+<input name="u" type="radio" value="5" onclick="numberOfUnits.value=this.value;"  />5
+<tr><td>for more use slider
+<td><input type="range" max="50" value="0" onchange="numberOfUnits.value=this.value;">
+<tr><td>or type here<td><input type="text" id="numberOfUnits" style="width:50px;">
+<tr><td>Delivery address<td><input type="text" id="xAddress">
+<tr><td>Contact number<td><input type="text" id="xPhone">
+
+<tr><td>Select payment method
+<td><input type='radio' name='paymT' value='COD' onclick='javascript:paymentType.value=this.value;'>COD
+<input type='radio' name='paymT' value='EFT' onclick='javascript:paymentType.value=this.value;'>EFT
+<input type='text' id='paymentType' style='width:50px;'>
+
+</table>
+
+<input type="button" value="Select" onclick="getResult()">
+<hr>
+<b>SELECTION:</B>
+<br><span id="xselection"><i>Select a product from above</i></span>
+<br><span id="uPrice"></span>
+<br><span id="tPrice"></span>
+
+<hr><b>Contact me</b>
+<br><A href="tel:0624929369">062 492 9369</A>
+<br><A href="mailto:Yesheka.Singh@gmail.com?subject='1 Stop Chemicals Query'" id="xMail">Yesheka.Singh@gmail.com</A>
+<br><A href="https://wa.me/27624929369?text='Hi'" id="WAmsg">Whatsapp Me</A>
+
+<script type="text/javascript">
+</script>
+
+
+</body>
+</html>
